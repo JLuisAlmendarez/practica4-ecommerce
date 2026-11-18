@@ -1,0 +1,36 @@
+{
+  "name": "practica4-ecommerce",
+  "version": "1.0.0",
+  "description": "Tienda Anime Store: Front-End de la Práctica 1 integrado con la API REST de la Práctica 3 (Práctica 4).",
+  "main": "src/server.js",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "node --test test/*.test.js",
+    "reset-data": "node scripts/reset-data.js"
+  },
+  "keywords": [],
+  "author": "José Luis Almendarez González",
+  "license": "ISC",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.7.2",
+    "bootstrap": "^5.3.8",
+    "cors": "^2.8.6",
+    "express": "^5.3.0",
+    "uuid": "^14.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "data/*",
+      "test/*",
+      "public/*"
+    ]
+  }
+}

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Administración · Anime Store</title>
+        <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/vendor/fontawesome/css/all.min.css" rel="stylesheet">
+        <link href="css/estilos.css" rel="stylesheet">
+        <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+    </head>
+    <body>
+        <div class="alert alert-dark alert-dismissible fade show text-center m-0 rounded-0">
+            🚚 Envío gratis en compras mayores a $999
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        </div>
+
+        <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img class="logo" width="50" height="50" src="https://img.magnific.com/free-vector/hand-drawn-kitsune-mask-illustration_23-2149367767.jpg?semt=ais_hybrid&amp;w=740&amp;q=80" alt="logo-tienda">
+                    Anime Store
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="menu">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html#catalogo">Catalogo</a></li>
+                        <li class="nav-item"><a class="nav-link" href="shopping-cart.html" data-cart-link>Carrito</a></li>
+                        <li class="nav-item"><a class="nav-link" href="orders.html">Mis pedidos</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="admin.html" aria-current="page">Administración</a></li>
+                    </ul>
+                    <form class="d-flex my-2 my-xl-0 me-xl-2" id="search-form" role="search">
+                        <div class="input-group">
+                            <input class="form-control" type="search" name="search" placeholder="Buscar" aria-label="Buscar productos">
+                            <button class="btn btn-warning" type="submit" aria-label="Buscar"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button>
+                        </div>
+                    </form>
+                    <div class="d-flex align-items-center">
+                        <a href="shopping-cart.html" class="btn text-white me-2" data-cart-link aria-label="Ver carrito">
+                            <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+                            <span class="badge bg-warning text-dark" data-cart-count>0</span>
+                        </a>
+                        <a href="index.html" class="btn btn-outline-light text-nowrap me-2">Iniciar Sesión</a>
+                        <a href="index.html" class="btn btn-primary text-nowrap">Registrarse</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <main class="container py-4">
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+                <div>
+                    <h1 class="mb-0">Administración de productos</h1>
+                    <p class="text-secondary mb-0" id="admin-total"></p>
+                </div>
+                <button type="button" class="btn btn-primary" id="product-new"><i class="fa-solid fa-plus me-1" aria-hidden="true"></i>Nuevo producto</button>
+            </div>
+            <div id="admin-status" class="mb-3" aria-live="polite"></div>
+            <div class="card">
+                <div class="table-responsive">
+                    <table class="table align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col">Imagen</th>
+                                <th scope="col">Producto</th>
+                                <th scope="col">Categoría</th>
+                                <th scope="col" class="text-end">Precio</th>
+                                <th scope="col" class="text-end">Stock</th>
+                                <th scope="col" class="text-end">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-rows"></tbody>
+                    </table>
+                </div>
+            </div>
+            <nav aria-label="Paginación de productos">
+                <ul class="pagination justify-content-center mt-4" id="admin-pagination"></ul>
+            </nav>
+        </main>
+
+        <div class="modal fade" id="modalProducto" tabindex="-1" aria-labelledby="modalProductoTitulo" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <form id="product-form" novalidate>
+                        <div class="modal-header">
+                            <h2 class="modal-title h5" id="modalProductoTitulo" data-form-title>Nuevo producto</h2>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row g-3">
+                                <div class="col-md-8">
+                                    <label class="form-label" for="f-title">Título</label>
+                                    <input class="form-control" id="f-title" name="title" required>
+                                    <div class="invalid-feedback" data-feedback-for="title"></div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label" for="f-category">Categoría</label>
+                                    <input class="form-control" id="f-category" name="category" required>
+                                    <div class="invalid-feedback" data-feedback-for="category"></div>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label" for="f-description">Descripción</label>
+                                    <textarea class="form-control" id="f-description" name="description" rows="2" required></textarea>
+                                    <div class="invalid-feedback" data-feedback-for="description"></div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label" for="f-price">Precio (MXN)</label>
+                                    <input class="form-control" id="f-price" name="price" type="number" min="0.01" step="0.01" required>
+                                    <div class="invalid-feedback" data-feedback-for="price"></div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label" for="f-stock">Stock</label>
+                                    <input class="form-control" id="f-stock" name="stock" type="number" min="0" step="1" required>
+                                    <div class="invalid-feedback" data-feedback-for="stock"></div>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label" for="f-imageUrl">URL de la imagen</label>
+                                    <input class="form-control" id="f-imageUrl" name="imageUrl" type="url" required>
+                                    <div class="invalid-feedback" data-feedback-for="imageUrl"></div>
+                                </div>
+                            </div>
+                            <div class="alert alert-danger mt-3 mb-0 d-none" id="product-form-error" role="alert"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary" id="product-save">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modalConfirmar" tabindex="-1" aria-labelledby="modalConfirmarTitulo" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title h5" id="modalConfirmarTitulo" data-confirm-title>Confirmar</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="mb-0" data-confirm-message></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-confirm-cancel>Cancelar</button>
+                        <button type="button" class="btn btn-danger" data-confirm-accept>Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="text-center py-3 mt-5">
+            © 2026 Anime Store - José Luis Almendarez González
+        </footer>
+
+        <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script type="module" src="js/admin.js"></script>
+    </body>
+</html>

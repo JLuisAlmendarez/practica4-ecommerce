@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Mis pedidos · Anime Store</title>
+        <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/vendor/fontawesome/css/all.min.css" rel="stylesheet">
+        <link href="css/estilos.css" rel="stylesheet">
+        <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+    </head>
+    <body>
+        <div class="alert alert-dark alert-dismissible fade show text-center m-0 rounded-0">
+            🚚 Envío gratis en compras mayores a $999
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        </div>
+
+        <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img class="logo" width="50" height="50" src="https://img.magnific.com/free-vector/hand-drawn-kitsune-mask-illustration_23-2149367767.jpg?semt=ais_hybrid&amp;w=740&amp;q=80" alt="logo-tienda">
+                    Anime Store
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="menu">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html#catalogo">Catalogo</a></li>
+                        <li class="nav-item"><a class="nav-link" href="shopping-cart.html" data-cart-link>Carrito</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="orders.html" aria-current="page">Mis pedidos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="admin.html">Administración</a></li>
+                    </ul>
+                    <form class="d-flex my-2 my-xl-0 me-xl-2" id="search-form" role="search">
+                        <div class="input-group">
+                            <input class="form-control" type="search" name="search" placeholder="Buscar" aria-label="Buscar productos">
+                            <button class="btn btn-warning" type="submit" aria-label="Buscar"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button>
+                        </div>
+                    </form>
+                    <div class="d-flex align-items-center">
+                        <a href="shopping-cart.html" class="btn text-white me-2" data-cart-link aria-label="Ver carrito">
+                            <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+                            <span class="badge bg-warning text-dark" data-cart-count>0</span>
+                        </a>
+                        <a href="index.html" class="btn btn-outline-light text-nowrap me-2">Iniciar Sesión</a>
+                        <a href="index.html" class="btn btn-primary text-nowrap">Registrarse</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <main class="container py-4">
+            <a href="index.html">← Regresar a la tienda</a>
+            <h1 class="my-3">Mis pedidos</h1>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                <div class="col">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <h5>Pedido #AS-1049</h5>
+                                <span class="badge bg-info">Procesando</span>
+                            </div>
+                            <p>Fecha: 24/09/2026</p>
+                            <img src="https://i5.walmartimages.com/asr/d2076541-56f2-4c44-8fac-c37d27fa4d9f.9575bcd6927dd05f35942c47e8b44073.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF" class="miniatura" alt="producto">
+                            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/6sided_dice.jpg?width=800" class="miniatura" alt="producto">
+                            <div class="progress my-3">
+                                <div class="progress-bar bg-info" style="width: 25%"></div>
+                            </div>
+                            <p class="precio">Total: $2,088</p>
+                            <button class="btn btn-primary">Ver Factura</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <h5>Pedido #AS-1047</h5>
+                                <span class="badge bg-warning text-dark">En camino</span>
+                            </div>
+                            <p>Fecha: 19/09/2026</p>
+                            <img src="https://m.media-amazon.com/images/I/81YuUFPMz4L._AC_UF894,1000_QL80_.jpg" class="miniatura" alt="producto">
+                            <img src="https://e3.365dm.com/24/12/2048x1152/skynews-gaming-games-tabletop-gaming_6773308.jpg" class="miniatura" alt="producto">
+                            <div class="progress my-3">
+                                <div class="progress-bar bg-warning" style="width: 60%"></div>
+                            </div>
+                            <p class="precio">Total: $3,600</p>
+                            <button class="btn btn-primary">Ver Factura</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <h5>Pedido #AS-1043</h5>
+                                <span class="badge bg-success">Entregado</span>
+                            </div>
+                            <p>Fecha: 02/09/2026</p>
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR05F0oDE6Uu85Fqrn2m72X6Or5_PBzrzaNkcKtl9M-x87tN0sm6_8q_Q8&s=10" class="miniatura" alt="producto">
+                            <div class="progress my-3">
+                                <div class="progress-bar bg-success" style="width: 100%"></div>
+                            </div>
+                            <p class="precio">Total: $1,290</p>
+                            <button class="btn btn-primary">Ver Factura</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <h5>Pedido #AS-1039</h5>
+                                <span class="badge bg-success">Entregado</span>
+                            </div>
+                            <p>Fecha: 21/08/2026</p>
+                            <img src="https://figurasanime.com/wp-content/uploads/2018/05/limpiar-figuras-de-coleccion.jpg" class="miniatura" alt="producto">
+                            <img src="https://i5.walmartimages.com/asr/d2076541-56f2-4c44-8fac-c37d27fa4d9f.9575bcd6927dd05f35942c47e8b44073.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF" class="miniatura" alt="producto">
+                            <div class="progress my-3">
+                                <div class="progress-bar bg-success" style="width: 100%"></div>
+                            </div>
+                            <p class="precio">Total: $2,248</p>
+                            <button class="btn btn-primary">Ver Factura</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+
+        <footer class="text-center py-3 mt-5">
+            © 2026 Anime Store - José Luis Almendarez González
+        </footer>
+
+        <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script type="module" src="js/orders.js"></script>
+    </body>
+</html>

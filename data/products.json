@@ -1,0 +1,83 @@
+[
+  {
+    "id": "3f6c2a8e-5b1d-4f7a-9c2e-1a8b7d6e5f40",
+    "title": "Figura de Asuka",
+    "description": "Figura de PVC de 20 cm con base.",
+    "category": "Figuras",
+    "price": 1899,
+    "stock": 5,
+    "imageUrl": "https://i5.walmartimages.com/asr/d2076541-56f2-4c44-8fac-c37d27fa4d9f.9575bcd6927dd05f35942c47e8b44073.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF"
+  },
+  {
+    "id": "b7e1d4c2-8a3f-4e6b-a1d9-2c5f8e7b3a61",
+    "title": "Combat Patrol Ultramarines",
+    "description": "Miniaturas para armar y pintar.",
+    "category": "Juegos de mesa",
+    "price": 2450,
+    "stock": 4,
+    "imageUrl": "https://m.media-amazon.com/images/I/81YuUFPMz4L._AC_UF894,1000_QL80_.jpg"
+  },
+  {
+    "id": "c2a9f8e7-1d3b-4c5a-8e6f-7b2d1a9c4e82",
+    "title": "Colección de manga JJK",
+    "description": "Tomos 1 al 5 en español.",
+    "category": "Manga",
+    "price": 1290,
+    "stock": 10,
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR05F0oDE6Uu85Fqrn2m72X6Or5_PBzrzaNkcKtl9M-x87tN0sm6_8q_Q8&s=10"
+  },
+  {
+    "id": "d8b3e6f1-4a2c-4d9e-b7a5-3f1c8e2d6b93",
+    "title": "Set de dados",
+    "description": "4 dados de colores para juegos de mesa.",
+    "category": "Juegos de mesa",
+    "price": 189,
+    "stock": 25,
+    "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/6sided_dice.jpg?width=800"
+  },
+  {
+    "id": "e4f7a1b9-6c3d-4e8a-9b2f-5d7c1a3e8f04",
+    "title": "Lote de libros bunko",
+    "description": "5 libros de bolsillo importados de Japón.",
+    "category": "Libros",
+    "price": 899,
+    "stock": 6,
+    "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Modern_paperback_spines_of_NHK_Books_in_Tokyo_20040116.jpg?width=800"
+  },
+  {
+    "id": "f1c5d8a3-9e2b-4a7c-8d6e-2b4f9a1c7e15",
+    "title": "Kit de limpieza para figuras",
+    "description": "Brochas y paños para quitar el polvo.",
+    "category": "Accesorios",
+    "price": 349,
+    "stock": 15,
+    "imageUrl": "https://figurasanime.com/wp-content/uploads/2018/05/limpiar-figuras-de-coleccion.jpg"
+  },
+  {
+    "id": "a9d2f6c4-3b8e-4f1a-b5c7-8e3d2a6f9b26",
+    "title": "Juego de mesa",
+    "description": "Juego cooperativo de 2 a 5 jugadores.",
+    "category": "Juegos de mesa",
+    "price": 1150,
+    "stock": 8,
+    "imageUrl": "https://e3.365dm.com/24/12/2048x1152/skynews-gaming-games-tabletop-gaming_6773308.jpg"
+  },
+  {
+    "id": "b3e8c1f5-7a4d-4b2e-9f6a-1c9d5e8b2a37",
+    "title": "Pase para convención",
+    "description": "Acceso de un día a la convención.",
+    "category": "Eventos",
+    "price": 780,
+    "stock": 3,
+    "imageUrl": "https://static.hosteltur.com/app/public/uploads/img/releases/2020/02/18/L_174027_turismo-de-tokio-anime-japan.jpg"
+  },
+  {
+    "id": "c6f4a9d2-2e7b-4c3f-a8d1-9b5e3c7a1f48",
+    "title": "Máscara kitsune",
+    "description": "Máscara decorativa pintada a mano.",
+    "category": "Accesorios",
+    "price": 450,
+    "stock": 0,
+    "imageUrl": "https://img.magnific.com/free-vector/hand-drawn-kitsune-mask-illustration_23-2149367767.jpg?semt=ais_hybrid&w=740&q=80"
+  }
+]

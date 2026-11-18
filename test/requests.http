@@ -1,0 +1,320 @@
+@host = http://localhost:3000
+@user = ana
+@figuraId = 3f6c2a8e-5b1d-4f7a-9c2e-1a8b7d6e5f40
+@paseId = b3e8c1f5-7a4d-4b2e-9f6a-1c9d5e8b2a37
+@idInexistente = 00000000-0000-0000-0000-000000000000
+
+###############################################################
+# PRODUCTOS · Listado, filtros y paginación
+###############################################################
+
+### 1. Listado completo (sin filtros) · 200
+GET {{host}}/api/products
+
+### 2. Búsqueda con paginación · 200
+GET {{host}}/api/products?search=figura&page=1&limit=8
+
+### 3. Filtros combinados: búsqueda, categoría y rango de precio · 200
+GET {{host}}/api/products?search=JUEGO&category=juegos de mesa&minPrice=500&maxPrice=2000
+
+### 4. Paginación: página 2 con 2 productos por página · 200
+GET {{host}}/api/products?category=juegos&page=2&limit=2
+
+### 5. Error: minPrice no numérico · 400
+GET {{host}}/api/products?minPrice=abc
+
+### 6. Error: minPrice mayor que maxPrice · 400
+GET {{host}}/api/products?minPrice=500&maxPrice=100
+
+###############################################################
+# PRODUCTOS · Detalle
+###############################################################
+
+### 7. Detalle de un producto existente · 200
+GET {{host}}/api/products/{{figuraId}}
+
+### 8. Error: producto inexistente · 404
+GET {{host}}/api/products/{{idInexistente}}
+
+###############################################################
+# PRODUCTOS · Alta, edición y eliminación
+###############################################################
+
+### 9. Alta de producto · 201 y Location
+# @name crearProducto
+POST {{host}}/api/products
+Content-Type: application/json
+
+{
+  "title": "Control inalámbrico",
+  "description": "Control para consola con vibración y batería recargable",
+  "category": "Accesorios",
+  "price": 1199,
+  "stock": 3,
+  "imageUrl": "https://picsum.photos/211"
+}
+
+### 10. Error: alta con datos inválidos · 400
+POST {{host}}/api/products
+Content-Type: application/json
+
+{
+  "title": "",
+  "description": "Sin título",
+  "category": "Accesorios",
+  "price": -50,
+  "stock": 2.5,
+  "imageUrl": "imagen.png"
+}
+
+### 11. Error: cuerpo JSON mal formado · 400
+POST {{host}}/api/products
+Content-Type: application/json
+
+{ "title": "Producto", "price": }
+
+### 12. Edición de producto (PUT) · 200
+PUT {{host}}/api/products/{{crearProducto.response.body.id}}
+Content-Type: application/json
+
+{
+  "title": "Control inalámbrico Pro",
+  "description": "Control para consola con vibración, batería recargable y botones traseros",
+  "category": "Accesorios",
+  "price": 1299,
+  "stock": 3,
+  "imageUrl": "https://picsum.photos/211"
+}
+
+### 13. Error: edición con datos incompletos · 400
+PUT {{host}}/api/products/{{crearProducto.response.body.id}}
+Content-Type: application/json
+
+{ "title": "Sólo título" }
+
+### 14. Error: edición de producto inexistente · 404
+PUT {{host}}/api/products/{{idInexistente}}
+Content-Type: application/json
+
+{
+  "title": "No existe",
+  "description": "No existe",
+  "category": "Accesorios",
+  "price": 10,
+  "stock": 1,
+  "imageUrl": "https://picsum.photos/212"
+}
+
+###############################################################
+# CARRITO · Header x-user
+###############################################################
+
+### 15. Error: carrito sin header x-user · 400
+GET {{host}}/api/cart
+
+### 16. Carrito inicial (vacío) · 200
+GET {{host}}/api/cart
+x-user: {{user}}
+
+###############################################################
+# CARRITO · Agregar productos
+###############################################################
+
+### 17. Agregar 1 unidad del producto creado · 200
+POST {{host}}/api/cart/items
+x-user: {{user}}
+Content-Type: application/json
+
+{ "productId": "{{crearProducto.response.body.id}}", "quantity": 1 }
+
+### 18. Agregar el mismo producto otra vez: quantity aumenta a 2 · 200
+POST {{host}}/api/cart/items
+x-user: {{user}}
+Content-Type: application/json
+
+{ "productId": "{{crearProducto.response.body.id}}", "quantity": 1 }
+
+### 19. Error: exceder el stock (2 + 5 > 3) · 409
+POST {{host}}/api/cart/items
+x-user: {{user}}
+Content-Type: application/json
+
+{ "productId": "{{crearProducto.response.body.id}}", "quantity": 5 }
+
+### 20. Error: producto inexistente · 404
+POST {{host}}/api/cart/items
+x-user: {{user}}
+Content-Type: application/json
+
+{ "productId": "{{idInexistente}}", "quantity": 1 }
+
+### 21. Error: cantidad no válida · 400
+POST {{host}}/api/cart/items
+x-user: {{user}}
+Content-Type: application/json
+
+{ "productId": "{{figuraId}}", "quantity": 0 }
+
+### 22. Agregar 2 figuras de Asuka · 200
+POST {{host}}/api/cart/items
+x-user: {{user}}
+Content-Type: application/json
+
+{ "productId": "{{figuraId}}", "quantity": 2 }
+
+###############################################################
+# CARRITO · Detalle enriquecido, subtotales y total
+###############################################################
+
+### 23. Ver carrito · 200
+GET {{host}}/api/cart
+x-user: {{user}}
+
+###############################################################
+# CARRITO · Cambiar cantidad
+###############################################################
+
+### 24. Cambiar la cantidad a 3 · 200
+PATCH {{host}}/api/cart/items/{{crearProducto.response.body.id}}
+x-user: {{user}}
+Content-Type: application/json
+
+{ "quantity": 3 }
+
+### 25. Error: cantidad negativa · 400
+PATCH {{host}}/api/cart/items/{{crearProducto.response.body.id}}
+x-user: {{user}}
+Content-Type: application/json
+
+{ "quantity": -1 }
+
+### 26. Error: cantidad mayor al stock · 409
+PATCH {{host}}/api/cart/items/{{crearProducto.response.body.id}}
+x-user: {{user}}
+Content-Type: application/json
+
+{ "quantity": 4 }
+
+### 27. Cantidad 0: elimina la entrada · 200
+PATCH {{host}}/api/cart/items/{{crearProducto.response.body.id}}
+x-user: {{user}}
+Content-Type: application/json
+
+{ "quantity": 0 }
+
+###############################################################
+# CARRITO · Eliminar entradas
+###############################################################
+
+### 28. Eliminar las figuras de Asuka del carrito · 200
+DELETE {{host}}/api/cart/items/{{figuraId}}
+x-user: {{user}}
+
+### 29. Error: eliminar una entrada que no está en el carrito · 404
+DELETE {{host}}/api/cart/items/{{figuraId}}
+x-user: {{user}}
+
+### 30. Carrito vacío · 200
+GET {{host}}/api/cart
+x-user: {{user}}
+
+###############################################################
+# PRODUCTOS · Eliminación
+###############################################################
+
+### 31. Eliminar el producto creado · 204
+DELETE {{host}}/api/products/{{crearProducto.response.body.id}}
+
+### 32. Error: consultar el producto eliminado · 404
+GET {{host}}/api/products/{{crearProducto.response.body.id}}
+
+### 33. Error: eliminar un producto inexistente · 404
+DELETE {{host}}/api/products/{{idInexistente}}
+
+###############################################################
+# RUTAS INEXISTENTES
+###############################################################
+
+### 34. Error: ruta inexistente · 404
+GET {{host}}/api/orders
+
+###############################################################
+# PRÁCTICA 4 · Endpoints que consume la interfaz
+# Mismo orden que el recorrido desde el navegador; parte del carrito vacío.
+###############################################################
+
+### 35. Página que pide el catálogo al cargar (4 por página) · 200
+GET {{host}}/api/products?page=1&limit=4
+
+### 36. Página 2 del catálogo · 200
+GET {{host}}/api/products?page=2&limit=4
+
+### 37. Última página: solo el producto restante · 200
+GET {{host}}/api/products?page=3&limit=4
+
+### 38. Modal: agregar 2 figuras de Asuka · 200
+POST {{host}}/api/cart/items
+x-user: {{user}}
+Content-Type: application/json
+
+{ "productId": "{{figuraId}}", "quantity": 2 }
+
+### 39. Modal: agregar 1 más; la misma entrada sube a 3 · 200
+POST {{host}}/api/cart/items
+x-user: {{user}}
+Content-Type: application/json
+
+{ "productId": "{{figuraId}}", "quantity": 1 }
+
+### 40. Modal: agregar 3 pases (todo el stock) · 200
+POST {{host}}/api/cart/items
+x-user: {{user}}
+Content-Type: application/json
+
+{ "productId": "{{paseId}}", "quantity": 3 }
+
+### 41. Error: un pase más supera el stock · 409
+POST {{host}}/api/cart/items
+x-user: {{user}}
+Content-Type: application/json
+
+{ "productId": "{{paseId}}", "quantity": 1 }
+
+### 42. Vista del carrito: GET con totales del servidor · 200
+GET {{host}}/api/cart
+x-user: {{user}}
+
+### 43. Editar: cambiar la figura a 4 · 200
+PATCH {{host}}/api/cart/items/{{figuraId}}
+x-user: {{user}}
+Content-Type: application/json
+
+{ "quantity": 4 }
+
+### 44. Error: editar con decimales · 400
+PATCH {{host}}/api/cart/items/{{figuraId}}
+x-user: {{user}}
+Content-Type: application/json
+
+{ "quantity": 1.5 }
+
+### 45. Editar con 0: elimina los pases · 200
+PATCH {{host}}/api/cart/items/{{paseId}}
+x-user: {{user}}
+Content-Type: application/json
+
+{ "quantity": 0 }
+
+### 46. Eliminar la figura del carrito · 200
+DELETE {{host}}/api/cart/items/{{figuraId}}
+x-user: {{user}}
+
+### 47. Carrito vacío, total 0 · 200
+GET {{host}}/api/cart
+x-user: {{user}}
+
+### 48. Express sirve la página principal · 200 text/html
+GET {{host}}/
+
+### 49. Comprobación de salud · 200
+GET {{host}}/health

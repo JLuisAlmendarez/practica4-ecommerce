@@ -1,0 +1,133 @@
+body {
+    background-color: #f5f6fa;
+}
+
+.navbar {
+    background-color: #1e2f55 !important;
+}
+
+.navbar .nav-link {
+    color: white !important;
+}
+
+.navbar .nav-link:hover {
+    color: #e8a23a !important;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.btn-primary {
+    background-color: #d63447;
+    border-color: #d63447;
+}
+
+.btn-primary:hover {
+    background-color: #b32536;
+    border-color: #b32536;
+}
+
+.carousel-item img {
+    height: 400px;
+    object-fit: cover;
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.producto {
+    transition: 0.3s;
+}
+
+.producto:hover {
+    transform: translateY(-5px);
+}
+
+.precio {
+    color: #d63447;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.miniatura {
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 5px;
+}
+
+footer {
+    background-color: #1e2f55;
+    color: white;
+}
+
+
+.carousel-item {
+    background-color: #1e2f55;
+}
+
+.carousel-caption {
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.card-img-top {
+    background-color: #e9ecf3;
+}
+
+.modal-product-img {
+    width: 96px;
+    height: 96px;
+    object-fit: cover;
+    background-color: #e9ecf3;
+}
+
+.cart-img {
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    background-color: #e9ecf3;
+}
+
+.admin-thumb {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    background-color: #e9ecf3;
+}
+
+.cart-line:last-child {
+    border-bottom: 0 !important;
+}
+
+.cart-line input[readonly] {
+    background-color: #f1f3f7;
+    border-color: transparent;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #1e2f55;
+    border-color: #1e2f55;
+}
+
+.pagination .page-link {
+    color: #1e2f55;
+}
+
+.navbar .nav-link.active {
+    color: #e8a23a !important;
+}
+
+.pagination .page-item.active .page-link {
+    color: #ffffff;
+}
+
+.navbar .nav-link {
+    white-space: nowrap;
+}
+
+.carousel-item img.sin-imagen {
+    visibility: hidden;
+}

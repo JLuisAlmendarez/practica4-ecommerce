@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Carrito · Anime Store</title>
+        <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/vendor/fontawesome/css/all.min.css" rel="stylesheet">
+        <link href="css/estilos.css" rel="stylesheet">
+        <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+    </head>
+    <body>
+        <div class="alert alert-dark alert-dismissible fade show text-center m-0 rounded-0">
+            🚚 Envío gratis en compras mayores a $999
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        </div>
+
+        <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img class="logo" width="50" height="50" src="https://img.magnific.com/free-vector/hand-drawn-kitsune-mask-illustration_23-2149367767.jpg?semt=ais_hybrid&amp;w=740&amp;q=80" alt="logo-tienda">
+                    Anime Store
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="menu">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html#catalogo">Catalogo</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="shopping-cart.html" aria-current="page" data-cart-link>Carrito</a></li>
+                        <li class="nav-item"><a class="nav-link" href="orders.html">Mis pedidos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="admin.html">Administración</a></li>
+                    </ul>
+                    <form class="d-flex my-2 my-xl-0 me-xl-2" id="search-form" role="search">
+                        <div class="input-group">
+                            <input class="form-control" type="search" name="search" placeholder="Buscar" aria-label="Buscar productos">
+                            <button class="btn btn-warning" type="submit" aria-label="Buscar"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button>
+                        </div>
+                    </form>
+                    <div class="d-flex align-items-center">
+                        <a href="shopping-cart.html" class="btn text-white me-2" data-cart-link aria-label="Ver carrito">
+                            <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+                            <span class="badge bg-warning text-dark" data-cart-count>0</span>
+                        </a>
+                        <a href="index.html" class="btn btn-outline-light text-nowrap me-2">Iniciar Sesión</a>
+                        <a href="index.html" class="btn btn-primary text-nowrap">Registrarse</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <main class="container py-4">
+            <a href="index.html#catalogo">← Regresar a la tienda</a>
+            <div class="d-flex flex-wrap justify-content-between align-items-end gap-2 my-3">
+                <h1 class="mb-0">Carrito de compras</h1>
+                <span class="text-secondary small">Usuario de prueba: <code>ana</code></span>
+            </div>
+            <div id="cart-status" class="mb-3" aria-live="polite"></div>
+            <div class="row g-4">
+                <div class="col-lg-8">
+                    <div class="card p-3" id="cart-items" aria-live="polite"></div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card p-3" id="cart-summary"></div>
+                </div>
+            </div>
+        </main>
+
+        <div class="modal fade" id="modalConfirmar" tabindex="-1" aria-labelledby="modalConfirmarTitulo" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title h5" id="modalConfirmarTitulo" data-confirm-title>Confirmar</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="mb-0" data-confirm-message></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-confirm-cancel>Cancelar</button>
+                        <button type="button" class="btn btn-danger" data-confirm-accept>Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="text-center py-3 mt-5">
+            © 2026 Anime Store - José Luis Almendarez González
+        </footer>
+
+        <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script type="module" src="js/cart.js"></script>
+    </body>
+</html>
